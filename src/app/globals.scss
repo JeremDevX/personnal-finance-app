@@ -45,4 +45,9 @@
   box-sizing: border-box;
   color: inherit;
   text-decoration: inherit;
+  list-style: none;
+}
+
+*:focus {
+  outline: none;
 }

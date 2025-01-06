@@ -1,0 +1,288 @@
+@use "../../styles/mixins" as mix;
+@use "../../styles/keyframes";
+
+.sidebar {
+  position: fixed;
+  bottom: 0;
+
+  width: 100%;
+  height: 3.25rem;
+  padding: var(--space-100) var(--space-200) 0;
+  background-color: var(--grey-900);
+  color: var(--white);
+  border-radius: 0.5rem 0.5rem 0 0;
+
+  @media (min-width: 768px) {
+    height: 4.625rem;
+  }
+
+  @media (min-width: 1024px) {
+    @include mix.transition-all;
+
+    height: 100%;
+    width: 88px;
+    padding: 0 0 var(--space-300) 0;
+    border-radius: 0 1rem 1rem 0;
+  }
+
+  &_open {
+    @media (min-width: 1024px) {
+      width: 300px;
+    }
+  }
+}
+
+.logo {
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    padding: var(--space-500) var(--space-400);
+  }
+
+  &__large,
+  &__small {
+    @include mix.transition-all;
+
+    transform-origin: left;
+  }
+
+  &__large {
+    max-width: 0;
+    transform: scaleX(0);
+    &_open {
+      opacity: 1;
+      max-width: 100%;
+      transform: scaleX(1);
+    }
+  }
+
+  &__small {
+    position: absolute;
+    &_open {
+      opacity: 0;
+    }
+  }
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.nav {
+  width: 100%;
+  height: 100%;
+
+  @media (min-width: 1024px) {
+    height: unset;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    @media (min-width: 1024px) {
+      flex-direction: column;
+      justify-content: unset;
+
+      height: fit-content;
+      gap: var(--space-50);
+      padding-right: 0.5rem;
+    }
+
+    &_open {
+      @media (min-width: 1024px) {
+        padding-right: var(--space-300);
+      }
+    }
+  }
+
+  &__linkEl {
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+
+    width: 100%;
+    max-width: 6.5rem;
+    height: 100%;
+    color: var(--grey-300);
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      background-color: var(--beige-100);
+      border-radius: 0.5rem 0.5rem 0 0;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 0.25rem;
+        background-color: var(--green);
+      }
+
+      .icon {
+        path {
+          fill: var(--green);
+        }
+      }
+
+      &.nav__linkEl_closed {
+        .icon {
+          path {
+            fill: var(--grey-900);
+          }
+        }
+      }
+
+      .nav__linkEl_name {
+        color: var(--grey-900);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      justify-content: start;
+
+      max-width: unset;
+      padding: var(--space-200) var(--space-400);
+
+      &:hover,
+      &:focus-within {
+        background-color: var(--beige-100);
+        border-radius: 0 0.5rem 0.5rem 0;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: unset;
+          width: 0.25rem;
+          height: 100%;
+          background-color: var(--green);
+        }
+      }
+    }
+
+    &__link {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      gap: var(--space-50);
+      height: 100%;
+
+      @media (min-width: 768px) {
+        padding: var(--space-150) 0 var(--space-100);
+      }
+      @media (min-width: 1024px) {
+        flex-direction: row;
+        justify-content: start;
+
+        gap: var(--space-200);
+        width: fit-content;
+      }
+    }
+
+    &_open {
+      @media (min-width: 1024px) {
+        padding: var(--space-200) 0 var(--space-200) var(--space-400);
+      }
+    }
+
+    &_name {
+      @include mix.text-preset-5-bold;
+      display: none;
+      color: var(--grey-300);
+      white-space: nowrap;
+
+      @media (min-width: 768px) {
+        display: unset;
+      }
+
+      @media (min-width: 1024px) {
+        @include mix.text-preset-3;
+
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      &_open {
+        @media (min-width: 1024px) {
+          opacity: 1;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.displayMenu {
+  @include mix.text-preset-3;
+  display: none;
+
+  position: absolute;
+
+  bottom: 5rem;
+  width: fit-content;
+  padding-left: var(--space-400);
+  color: var(--grey-300);
+  cursor: pointer;
+
+  @media (min-width: 1024px) {
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-200);
+
+    &:hover,
+    &:focus {
+      color: var(--white);
+      path {
+        fill: var(--white);
+      }
+    }
+  }
+  &__text {
+    white-space: nowrap;
+  }
+}
+
+.open {
+  animation: reverse-rotate 0.6s ease-out forwards;
+  transform-origin: center;
+}
+
+.close {
+  animation: rotate 0.6s ease-out forwards;
+  transform-origin: center;
+  padding: 0 var(--space-150) 0 0;
+}
+
+.hide {
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
+.display {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.preload * {
+  animation-duration: 0s !important;
+  -webkit-animation-duration: 0s !important;
+  transition: background-color 0s, opacity 0s, color 0s, width 0s, height 0s,
+    padding 0s, margin 0s !important;
+}

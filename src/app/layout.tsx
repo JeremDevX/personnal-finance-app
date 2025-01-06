@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Public_Sans } from "next/font/google";
 import "./globals.scss";
+import Sidebar from "@/components/sidebar/Sidebar";
 
 const publicSans = Public_Sans({
   subsets: ["latin"],
@@ -20,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${publicSans.className}`}>{children}</body>
+      <body className={`${publicSans.className}`}>
+        <Sidebar />
+        {children}
+      </body>
     </html>
   );
 }
