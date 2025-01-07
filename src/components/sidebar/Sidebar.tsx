@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Icons } from "../icons/Icons";
 import styles from "./Sidebar.module.scss";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface NavLink {
   href: string;
@@ -13,16 +14,21 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { href: "/", icon: Icons.NavOverview, label: "Overview" },
-  { href: "/", icon: Icons.NavTransactions, label: "Transactions" },
-  { href: "/", icon: Icons.NavBudgets, label: "Budgets" },
-  { href: "/", icon: Icons.NavPots, label: "Pots" },
-  { href: "/", icon: Icons.NavRecurringBills, label: "Recurring Bills" },
+  { href: "/transactions", icon: Icons.NavTransactions, label: "Transactions" },
+  { href: "/budgets", icon: Icons.NavBudgets, label: "Budgets" },
+  { href: "/pots", icon: Icons.NavPots, label: "Pots" },
+  {
+    href: "/recurring-bills",
+    icon: Icons.NavRecurringBills,
+    label: "Recurring Bills",
+  },
 ];
 
 export default function Sidebar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPreload, setIsPreload] = useState(true);
   const sidebarRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -34,6 +40,10 @@ export default function Sidebar() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    console.log("pathname = " + pathname);
+  }, [pathname]);
 
   return (
     <aside
@@ -65,7 +75,7 @@ export default function Sidebar() {
               key={index}
               className={`${styles.nav__linkEl} ${
                 isMenuOpen ? styles.nav__linkEl_open : styles.nav__linkEl_closed
-              }`}
+              } ${pathname === link.href ? styles.nav__linkEl_active : ""}`}
               aria-label={`Navigate to ${link.label}`}
             >
               <Link href={link.href} className={`${styles.nav__linkEl__link} `}>
