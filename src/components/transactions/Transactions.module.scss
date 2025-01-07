@@ -1,0 +1,111 @@
+@use "../../styles/mixins" as mix;
+
+.transactions {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-400);
+  padding: var(--space-300) var(--space-250);
+  background-color: var(--white);
+  border-radius: 0.75rem;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &_title {
+      @include mix.text-preset-2;
+
+      color: var(--grey-900);
+    }
+
+    &_link {
+      @include mix.text-preset-4;
+
+      display: flex;
+      align-items: center;
+
+      gap: var(--space-150);
+      color: var(--grey-500);
+      transition: color 0.3s ease-in-out;
+
+      path {
+        fill: var(--grey-500);
+        transition: fill 0.3s ease-in-out;
+      }
+
+      &:hover {
+        color: var(--grey-900);
+
+        path {
+          fill: var(--grey-900);
+        }
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-250);
+  }
+
+  &__element {
+    display: flex;
+    justify-content: space-between;
+
+    padding-bottom: var(--space-250);
+    border-bottom: 1px solid var(--grey-100);
+
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    &_info {
+      display: flex;
+      align-items: center;
+
+      gap: var(--space-150);
+    }
+
+    &_avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+
+      @media (min-width: 768px) {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    &_title {
+      @include mix.text-preset-4-bold;
+    }
+
+    &_data {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+
+      gap: var(--space-100);
+    }
+
+    &_amount {
+      @include mix.text-preset-4-bold;
+
+      &_positive {
+        color: var(--green);
+      }
+    }
+
+    &_date {
+      @include mix.text-preset-5;
+
+      color: var(--grey-500);
+    }
+  }
+}
