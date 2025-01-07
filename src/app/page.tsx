@@ -4,6 +4,7 @@ import { Data } from "@/utils/interfaces";
 import { promises as fs } from "fs";
 import Pots from "@/components/pots/Pots";
 import Transactions from "@/components/transactions/Transactions";
+import Budgets from "@/components/budgets/Budgets";
 
 export default async function OverviewPage() {
   const file = await fs.readFile(process.cwd() + "/src/app/data.json", "utf8");
@@ -15,6 +16,7 @@ export default async function OverviewPage() {
       <Balance balance={data.balance} />
       <Pots pots={data.pots} />
       <Transactions transactions={data.transactions} />
+      <Budgets budgets={data.budgets} transactions={data.transactions} />
     </main>
   );
 }

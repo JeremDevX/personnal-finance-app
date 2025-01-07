@@ -54,3 +54,13 @@
     padding: var(--space-400) var(--space-500);
   }
 }
+
+@mixin overview-el-pad-bg {
+  background-color: var(--white);
+  padding: var(--space-300) var(--space-250);
+  border-radius: 0.75rem;
+
+  @media (min-width: 768px) {
+    padding: var(--space-400);
+  }
+}

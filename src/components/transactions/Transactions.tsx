@@ -1,9 +1,8 @@
 import { Data } from "@/utils/interfaces";
 import styles from "./Transactions.module.scss";
-import Link from "next/link";
-import { Icons } from "../icons/Icons";
 import Image from "next/image";
 import { formatCurrencyNumber } from "@/utils/functions";
+import LinkToPage from "../linkToPage/LinkToPage";
 
 export default function Transactions({
   transactions,
@@ -14,12 +13,7 @@ export default function Transactions({
     <section className={styles.transactions}>
       <div className={styles.transactions__header}>
         <h2 className={styles.transactions__header_title}>Transactions</h2>
-        <Link
-          href={"/transactions"}
-          className={styles.transactions__header_link}
-        >
-          View All <Icons.CaretRight />
-        </Link>
+        <LinkToPage href="/transactions" title="View All" />
       </div>
       <ul className={styles.transactions__list}>
         {transactions.slice(0, 5).map((transaction, index) => (

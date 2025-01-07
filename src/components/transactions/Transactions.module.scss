@@ -1,13 +1,12 @@
 @use "../../styles/mixins" as mix;
 
 .transactions {
+  @include mix.overview-el-pad-bg;
+
   display: flex;
   flex-direction: column;
 
   gap: var(--space-400);
-  padding: var(--space-300) var(--space-250);
-  background-color: var(--white);
-  border-radius: 0.75rem;
 
   &__header {
     display: flex;
@@ -18,30 +17,6 @@
       @include mix.text-preset-2;
 
       color: var(--grey-900);
-    }
-
-    &_link {
-      @include mix.text-preset-4;
-
-      display: flex;
-      align-items: center;
-
-      gap: var(--space-150);
-      color: var(--grey-500);
-      transition: color 0.3s ease-in-out;
-
-      path {
-        fill: var(--grey-500);
-        transition: fill 0.3s ease-in-out;
-      }
-
-      &:hover {
-        color: var(--grey-900);
-
-        path {
-          fill: var(--grey-900);
-        }
-      }
     }
   }
 

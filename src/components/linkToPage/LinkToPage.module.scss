@@ -1,0 +1,23 @@
+@use "../../styles/mixins" as mix;
+
+.link {
+  @include mix.text-preset-4;
+  display: flex;
+  align-items: center;
+
+  gap: var(--space-150);
+  color: var(--grey-500);
+  transition: color 0.3s ease-in-out;
+
+  path {
+    transition: fill 0.3s ease-in-out;
+  }
+
+  &:hover {
+    color: var(--grey-900);
+
+    path {
+      fill: var(--grey-900);
+    }
+  }
+}

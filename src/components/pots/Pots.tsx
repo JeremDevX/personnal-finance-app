@@ -1,25 +1,16 @@
-import Link from "next/link";
 import styles from "./Pots.module.scss";
 import { Icons } from "../icons/Icons";
-import { CSSProperties } from "react";
 import { Data } from "@/utils/interfaces";
+import { calculateTotal } from "@/utils/functions";
+import AmountCard from "../amountCard/AmountCard";
+import LinkToPage from "../linkToPage/LinkToPage";
 
 export default function Pots({ pots }: { pots: Data["pots"] }) {
-  const calculateTotalSaved = (pots: Data["pots"]) => {
-    let totalSaved = 0;
-    for (let i = 0; i < pots.length; i++) {
-      totalSaved += pots[i].total;
-    }
-    return totalSaved;
-  };
-
   return (
     <section className={styles.pots}>
       <div className={styles.pots__header}>
         <h2 className={styles.pots__header_title}>Pots</h2>
-        <Link href="/pots" className={styles.pots__header_link}>
-          See Details <Icons.CaretRight />
-        </Link>
+        <LinkToPage href="/pots" title="See Details" />
       </div>
 
       <div className={styles.pots__content}>
@@ -28,20 +19,18 @@ export default function Pots({ pots }: { pots: Data["pots"] }) {
           <div className={styles.pots__totalSaved_info}>
             <h3 className={styles.pots__totalSaved_title}>Total Saved</h3>
             <p className={styles.pots__totalSaved_amount}>
-              ${calculateTotalSaved(pots)}
+              ${calculateTotal(pots, "total")}
             </p>
           </div>
         </div>
         <div className={styles.pots__saveCategories}>
           {pots.slice(0, 4).map((pot, index) => (
-            <div
-              className={styles.pots__saveCard}
+            <AmountCard
               key={index}
-              style={{ "--card-color": pot.theme } as CSSProperties}
-            >
-              <p className={styles.pots__saveCard_category}>{pot.name}</p>
-              <p className={styles.pots__saveCard_amount}>${pot.total}</p>
-            </div>
+              category={pot.name}
+              amount={pot.total}
+              theme={pot.theme}
+            />
           ))}
         </div>
       </div>

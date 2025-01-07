@@ -1,17 +1,13 @@
 @use "../../styles/mixins" as mix;
 
 .pots {
+  @include mix.overview-el-pad-bg;
+
   display: flex;
   flex-direction: column;
 
   gap: var(--space-250);
-  padding: var(--space-300) var(--space-250);
-  border-radius: 0.75rem;
-  background-color: var(--white);
 
-  @media (min-width: 768px) {
-    padding: var(--space-400);
-  }
   &__header {
     display: flex;
     justify-content: space-between;
@@ -19,28 +15,6 @@
 
     &_title {
       @include mix.text-preset-2;
-    }
-
-    &_link {
-      @include mix.text-preset-4;
-      display: flex;
-      align-items: center;
-
-      gap: var(--space-150);
-      color: var(--grey-500);
-      transition: color 0.3s ease-in-out;
-
-      path {
-        transition: fill 0.3s ease-in-out;
-      }
-
-      &:hover {
-        color: var(--grey-900);
-
-        path {
-          fill: var(--grey-900);
-        }
-      }
     }
   }
 
