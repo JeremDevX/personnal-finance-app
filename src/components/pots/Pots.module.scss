@@ -1,0 +1,160 @@
+@use "../../styles/mixins" as mix;
+
+.pots {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-250);
+  padding: var(--space-300) var(--space-250);
+  border-radius: 0.75rem;
+  background-color: var(--white);
+
+  @media (min-width: 768px) {
+    padding: var(--space-400);
+  }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &_title {
+      @include mix.text-preset-2;
+    }
+
+    &_link {
+      @include mix.text-preset-4;
+      display: flex;
+      align-items: center;
+
+      gap: var(--space-200);
+      color: var(--grey-500);
+      transition: color 0.3s ease-in-out;
+
+      path {
+        transition: fill 0.3s ease-in-out;
+      }
+
+      &:hover {
+        color: var(--grey-900);
+
+        path {
+          fill: var(--grey-900);
+        }
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-250);
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+
+  &__totalSaved {
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-200);
+    padding: var(--space-200);
+    background-color: var(--beige-100);
+    border-radius: 0.75rem;
+
+    @media (min-width: 768px) {
+      width: 247px;
+    }
+
+    &_icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      fill: var(--green);
+    }
+
+    &_info {
+      display: flex;
+      flex-direction: column;
+
+      gap: var(--space-150);
+    }
+
+    &_title {
+      @include mix.text-preset-4;
+
+      color: var(--grey-500);
+    }
+
+    &_amount {
+      @include mix.text-preset-1;
+
+      color: var(--grey-900);
+    }
+  }
+
+  &__saveCategories {
+    display: flex;
+    flex-wrap: wrap;
+
+    @media (min-width: 768px) {
+      flex: 1;
+    }
+  }
+
+  &__saveCard {
+    display: flex;
+    flex-direction: column;
+    flex: 1 50%;
+
+    position: relative;
+
+    gap: var(--space-50);
+    padding-left: var(--space-200);
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0.25rem;
+      height: 100%;
+      background-color: var(--card-color, var(--green));
+      border-radius: 0.5rem 0.5rem;
+    }
+
+    &:nth-child(1),
+    &:nth-child(3) {
+      margin-bottom: var(--space-200);
+    }
+
+    &:nth-child(1) {
+      order: 1;
+    }
+
+    &:nth-child(2) {
+      order: 3;
+    }
+
+    &:nth-child(3) {
+      order: 2;
+    }
+
+    &:nth-child(4) {
+      order: 4;
+    }
+
+    &_category {
+      @include mix.text-preset-4;
+
+      color: var(--grey-500);
+    }
+
+    &_amount {
+      @include mix.text-preset-4-bold;
+
+      color: var(--grey-900);
+    }
+  }
+}
