@@ -1,0 +1,51 @@
+@use "../../styles/mixins" as mix;
+
+.balance {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-250);
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+
+    gap: var(--space-300);
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    gap: var(--space-150);
+    border-radius: 0.75rem;
+    background-color: var(--white);
+    padding: var(--space-250);
+
+    @media (min-width: 768px) {
+      padding: var(--space-300);
+    }
+
+    &_name {
+      @include mix.text-preset-4;
+
+      color: var(--grey-500);
+      text-transform: capitalize;
+    }
+
+    &_amount {
+      @include mix.text-preset-1;
+
+      color: var(--grey-900);
+    }
+
+    &:first-child {
+      background-color: var(--grey-900);
+
+      .balance__card_name,
+      .balance__card_amount {
+        color: var(--white);
+      }
+    }
+  }
+}

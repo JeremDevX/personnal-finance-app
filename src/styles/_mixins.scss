@@ -46,3 +46,11 @@
 @mixin transition-all {
   transition: all 0.3s ease-in-out;
 }
+
+@mixin main-padding {
+  padding: var(--space-300) var(--space-200);
+
+  @media (min-width: 768px) {
+    padding: var(--space-400) var(--space-500);
+  }
+}

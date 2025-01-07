@@ -51,3 +51,32 @@
 *:focus {
   outline: none;
 }
+
+body {
+  background-color: var(--beige-100);
+}
+
+main {
+  margin-bottom: 52px;
+
+  @media (min-width: 1024px) {
+    margin-bottom: 74px;
+  }
+
+  @media (min-width: 1024px) {
+    margin-bottom: 0;
+    transition: margin-left 0.3s ease-in-out;
+  }
+}
+
+.sidebar-open {
+  @media (min-width: 1024px) {
+    margin-left: 300px;
+  }
+}
+
+.sidebar-closed {
+  @media (min-width: 1024px) {
+    margin-left: 88px;
+  }
+}
