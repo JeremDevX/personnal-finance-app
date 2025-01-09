@@ -191,7 +191,7 @@
         }
       }
 
-      &:focus-within {
+      &:focus-visible {
         .nav__linkEl_name {
           color: var(--red);
         }
@@ -275,7 +275,7 @@
       }
     }
 
-    &:focus {
+    &:focus-visible {
       color: var(--red);
       path {
         fill: var(--red);
