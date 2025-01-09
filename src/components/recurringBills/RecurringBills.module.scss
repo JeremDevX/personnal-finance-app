@@ -1,0 +1,55 @@
+@use "../../styles/mixins" as mix;
+
+.recurringBills {
+  @include mix.overview-el-pad-bg;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-400);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &_title {
+      @include mix.text-preset-2;
+
+      color: var(--grey-900);
+    }
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-150);
+
+    &_item {
+      @include mix.text-preset-4-bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: var(--space-250) var(--space-200);
+      border-radius: 0.5rem;
+      background-color: var(--beige-100);
+
+      border-left: 0.25rem solid var(--green);
+
+      &:nth-child(2) {
+        border-left-color: var(--yellow);
+      }
+
+      &:nth-child(3) {
+        border-left-color: var(--cyan);
+      }
+    }
+
+    &_name {
+      @include mix.text-preset-4;
+
+      color: var(--grey-500);
+    }
+  }
+}
