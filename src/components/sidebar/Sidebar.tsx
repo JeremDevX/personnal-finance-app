@@ -42,12 +42,8 @@ export default function Sidebar() {
   }, []);
 
   useEffect(() => {
-    const mainElement = document.getElementsByTagName("main")[0];
-
-    if (!mainElement) return;
-
-    mainElement.classList.toggle("sidebar-open", isMenuOpen);
-    mainElement.classList.toggle("sidebar-closed", !isMenuOpen);
+    document.body.classList.toggle("sidebar-open", isMenuOpen);
+    document.body.classList.toggle("sidebar-closed", !isMenuOpen);
   }, [isMenuOpen]);
 
   return (

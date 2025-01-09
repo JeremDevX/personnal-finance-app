@@ -20,4 +20,16 @@
       fill: var(--grey-900);
     }
   }
+
+  &:focus {
+    text-decoration: underline;
+
+    font-weight: bold;
+    transform: scale(1.1);
+    color: var(--red);
+
+    path {
+      fill: var(--red);
+    }
+  }
 }

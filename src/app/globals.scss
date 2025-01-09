@@ -54,6 +54,10 @@
 
 body {
   background-color: var(--beige-100);
+
+  @media (min-width: 1024px) {
+    transition: margin-left 0.3s ease-in-out;
+  }
 }
 
 main {
