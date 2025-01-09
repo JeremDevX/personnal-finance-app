@@ -15,10 +15,16 @@ export default async function OverviewPage() {
     <main className={`${styles.overview}`}>
       <h1 className={styles.overview__title}>Overview</h1>
       <Balance balance={data.balance} />
-      <Pots pots={data.pots} />
-      <Transactions transactions={data.transactions} />
-      <Budgets budgets={data.budgets} transactions={data.transactions} />
-      <RecurringBills transactions={data.transactions} />
+      <div className={styles.overview__content}>
+        <div className={styles.overview__leftSection}>
+          <Pots pots={data.pots} />
+          <Transactions transactions={data.transactions} />
+        </div>
+        <div className={styles.overview__rightSection}>
+          <Budgets budgets={data.budgets} transactions={data.transactions} />
+          <RecurringBills transactions={data.transactions} />
+        </div>
+      </div>
     </main>
   );
 }

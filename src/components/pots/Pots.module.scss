@@ -40,6 +40,7 @@
 
     @media (min-width: 768px) {
       width: 247px;
+      height: 110px;
     }
 
     &_icon {
@@ -71,10 +72,6 @@
   &__saveCategories {
     display: flex;
     flex-wrap: wrap;
-
-    @media (min-width: 768px) {
-      flex: 1;
-    }
   }
 
   &__saveCard {

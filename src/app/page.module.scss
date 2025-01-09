@@ -3,15 +3,36 @@
 .overview {
   @include mix.main-padding;
 
-  & {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-400);
-  }
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-300);
 
   &__title {
     @include mix.text-preset-1;
 
     color: var(--grey-900);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    gap: var(--space-300);
+    width: 100%;
+
+    @media (min-width: 1440px) {
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__leftSection,
+  &__rightSection {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-300);
+    width: 100%;
   }
 }
