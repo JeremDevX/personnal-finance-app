@@ -1,10 +1,10 @@
 import { Data } from "@/utils/interfaces";
-import styles from "./Transactions.module.scss";
+import styles from "./TransactionsCard.module.scss";
 import Image from "next/image";
 import { formatCurrencyNumber } from "@/utils/functions";
-import LinkToPage from "../linkToPage/LinkToPage";
+import LinkToPage from "../../linkToPage/LinkToPage";
 
-export default function Transactions({
+export default function TransactionsCard({
   transactions,
 }: {
   transactions: Data["transactions"];

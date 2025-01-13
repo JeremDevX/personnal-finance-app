@@ -1,0 +1,91 @@
+@use "@/styles/mixins" as mix;
+
+.transactionsListContainer {
+  @include mix.element-padding;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-300);
+}
+
+.transactionsList {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-200);
+  width: 100%;
+}
+
+.transactionElement {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 100%;
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--grey-100);
+    padding-bottom: var(--space-200);
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+
+    gap: var(--space-150);
+
+    &_info {
+      display: flex;
+      flex-direction: column;
+
+      gap: var(--space-50);
+    }
+
+    &_avatar {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+
+      @media (min-width: 768px) {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+
+    &_name {
+      @include mix.text-preset-4-bold;
+
+      color: var(--grey-900);
+    }
+
+    &_category {
+      @include mix.text-preset-5;
+
+      color: var(--grey-500);
+    }
+  }
+
+  &__data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    gap: var(--space-50);
+
+    &_amount {
+      @include mix.text-preset-4-bold;
+
+      color: var(--grey-900);
+
+      &_positive {
+        color: var(--green);
+      }
+    }
+
+    &_date {
+      @include mix.text-preset-5;
+
+      color: var(--grey-500);
+    }
+  }
+}

@@ -55,7 +55,7 @@
   }
 }
 
-@mixin overview-el-pad-bg {
+@mixin element-padding {
   background-color: var(--white);
   padding: var(--space-300) var(--space-250);
   border-radius: 0.75rem;

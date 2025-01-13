@@ -1,3 +1,5 @@
+@use "../styles/mixins" as mix;
+
 :root {
   //Primary colors
   --beige-500: #98908b;
@@ -61,6 +63,8 @@ body {
 }
 
 main {
+  @include mix.main-padding;
+
   margin-bottom: 52px;
 
   @media (min-width: 768px) {

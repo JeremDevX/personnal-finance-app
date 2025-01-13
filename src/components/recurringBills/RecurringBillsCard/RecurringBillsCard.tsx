@@ -1,12 +1,12 @@
 import { Data } from "@/utils/interfaces";
-import styles from "./RecurringBills.module.scss";
-import LinkToPage from "../linkToPage/LinkToPage";
+import styles from "./RecurringBillsCard.module.scss";
+import LinkToPage from "../../linkToPage/LinkToPage";
 import {
   calculatesRecurringBills,
   formatCurrencyNumber,
 } from "@/utils/functions";
 
-export default function RecurringBills({
+export default function RecurringBillsCard({
   transactions,
 }: {
   transactions: Data["transactions"];

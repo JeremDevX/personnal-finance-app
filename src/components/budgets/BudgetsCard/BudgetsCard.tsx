@@ -1,15 +1,13 @@
 "use client";
 
 import { Data } from "@/utils/interfaces";
-import styles from "./Budgets.module.scss";
-import Link from "next/link";
-import { Icons } from "../icons/Icons";
-import { calculateTotal, formatCurrencyNumber } from "@/utils/functions";
+import styles from "./BudgetsCard.module.scss";
+import { calculateTotal } from "@/utils/functions";
 import BudgetsChart from "@/components/budgetsChart/BudgetsChart";
-import AmountCard from "../amountCard/AmountCard";
-import LinkToPage from "../linkToPage/LinkToPage";
+import AmountCard from "../../amountCard/AmountCard";
+import LinkToPage from "../../linkToPage/LinkToPage";
 
-export default function Budgets({
+export default function BudgetsCard({
   budgets,
   transactions,
 }: {

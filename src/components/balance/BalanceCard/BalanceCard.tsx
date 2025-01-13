@@ -1,12 +1,8 @@
 import { Data } from "@/utils/interfaces";
-import styles from "./Balance.module.scss";
+import styles from "./BalanceCard.module.scss";
 import { formatCurrencyNumber } from "@/utils/functions";
 
-export default async function Balance({
-  balance,
-}: {
-  balance: Data["balance"];
-}) {
+export default function BalanceCard({ balance }: { balance: Data["balance"] }) {
   const balanceEntries: [key: string, value: number][] =
     Object.entries(balance);
 

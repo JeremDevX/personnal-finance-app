@@ -1,0 +1,9 @@
+@use "../../styles/mixins" as mix;
+
+.transactions {
+  &__title {
+    @include mix.text-preset-1;
+
+    color: var(--grey-900);
+  }
+}

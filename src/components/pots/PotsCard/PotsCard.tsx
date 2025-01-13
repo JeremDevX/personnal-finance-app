@@ -1,11 +1,11 @@
-import styles from "./Pots.module.scss";
-import { Icons } from "../icons/Icons";
+import styles from "./PotsCard.module.scss";
+import { Icons } from "../../icons/Icons";
 import { Data } from "@/utils/interfaces";
 import { calculateTotal } from "@/utils/functions";
-import AmountCard from "../amountCard/AmountCard";
-import LinkToPage from "../linkToPage/LinkToPage";
+import AmountCard from "../../amountCard/AmountCard";
+import LinkToPage from "../../linkToPage/LinkToPage";
 
-export default function Pots({ pots }: { pots: Data["pots"] }) {
+export default function PotsCard({ pots }: { pots: Data["pots"] }) {
   return (
     <section className={styles.pots}>
       <div className={styles.pots__header}>

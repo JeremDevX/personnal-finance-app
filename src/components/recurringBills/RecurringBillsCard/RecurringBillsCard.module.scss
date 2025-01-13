@@ -1,7 +1,7 @@
-@use "../../styles/mixins" as mix;
+@use "@/styles/mixins" as mix;
 
 .recurringBills {
-  @include mix.overview-el-pad-bg;
+  @include mix.element-padding;
 
   display: flex;
   flex-direction: column;
