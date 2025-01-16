@@ -7,6 +7,28 @@
   flex-direction: column;
 
   gap: var(--space-300);
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: var(--space-300);
+    width: 100%;
+
+    &_filters {
+      display: flex;
+      flex-direction: row;
+
+      gap: var(--space-300);
+    }
+  }
+}
+
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .transactionsList {

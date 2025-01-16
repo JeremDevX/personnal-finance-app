@@ -5,8 +5,9 @@ import styles from "./TransactionsList.module.scss";
 import { useState } from "react";
 import Image from "next/image";
 import { formatCurrencyNumber } from "@/utils/functions";
-import { Icons } from "@/components/icons/Icons";
 import Pagination from "@/components/pagination/Pagination";
+import SearchBar from "../../SearchBar/SearchBar";
+import { Icons } from "@/components/icons/Icons";
 
 interface TransactionElementProps {
   name: string;
@@ -56,19 +57,34 @@ export default function TransactionsList({
 }: {
   transactions: Data["transactions"];
 }) {
+  const [transactionsList, setTransactionsList] = useState(transactions);
   const [page, setPage] = useState<number>(1);
   const itemsPerPage = 10;
 
-  const numberOfPages = Math.ceil(transactions.length / 10);
+  const numberOfPages = Math.ceil(transactionsList.length / 10);
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
   };
 
+  const handleSearchTransaction = (query: string) => {
+    const filteredTransactions = transactions.filter((transaction) =>
+      transaction.name.toLowerCase().includes(query.toLowerCase())
+    );
+    setTransactionsList(filteredTransactions);
+  };
+
   return (
     <section className={styles.transactionsListContainer}>
+      <div className={styles.transactionsListContainer__header}>
+        <SearchBar onSearch={handleSearchTransaction} />
+        <div className={styles.transactionsListContainer__header_filters}>
+          <Icons.SortMobile className={styles.icon} />
+          <Icons.FilterMobile className={styles.icon} />
+        </div>
+      </div>
       <ul className={styles.transactionsList}>
-        {transactions
+        {transactionsList
           .slice((page - 1) * itemsPerPage, page * itemsPerPage)
           .map((transaction, index) => (
             <TransactionElement

@@ -81,7 +81,7 @@ export default function Pagination({
         numberOfPages={numberOfPages}
       />
       <ul className={styles.pagination__list}>
-        {windowWidth > 767 ? (
+        {windowWidth > 767 || elements.length < 3 ? (
           elements.map((num) => (
             <li
               key={num}
