@@ -18,17 +18,19 @@ export default function SearchBar(props: SearchBarProps) {
   };
 
   const handleSubmitSearch = (
-    event: React.FormEvent<HTMLFormElement>,
-    query: string
+    query: string,
+    event?: React.FormEvent<HTMLFormElement>
   ) => {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
     onSearch(query.trim());
   };
 
   return (
     <form
       className={styles.searchBar}
-      onSubmit={(event) => handleSubmitSearch(event, query)}
+      onSubmit={(event) => handleSubmitSearch(query, event)}
     >
       <input
         type="text"
@@ -36,7 +38,10 @@ export default function SearchBar(props: SearchBarProps) {
         className={styles.searchBar__input}
         onChange={handleInputChange}
       />
-      <Icons.Search className={styles.searchBar__icon} />
+      <Icons.Search
+        className={styles.searchBar__icon}
+        onClick={() => handleSubmitSearch(query)}
+      />
     </form>
   );
 }
