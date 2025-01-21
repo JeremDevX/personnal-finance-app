@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${publicSans.className}`}>
+      <body className={`${publicSans.className} sidebar-closed`}>
         <Sidebar />
         {children}
       </body>
