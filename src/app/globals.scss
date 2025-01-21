@@ -59,6 +59,12 @@
   outline: none;
 }
 
+*:focus-visible {
+  outline: 2px solid var(--grey-500);
+  border-radius: 0.25rem;
+  outline-offset: 4px;
+}
+
 body {
   background-color: var(--beige-100);
 

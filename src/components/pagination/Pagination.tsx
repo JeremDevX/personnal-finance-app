@@ -86,9 +86,13 @@ export default function Pagination({
             <li
               key={num}
               onClick={() => onPageChange(num)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") onPageChange(num);
+              }}
               className={`${styles.pagination__list_item} ${
                 num === currentPage ? styles.pagination__list_item_active : ""
               }`}
+              tabIndex={0}
             >
               {num}
             </li>
@@ -97,9 +101,13 @@ export default function Pagination({
           <>
             <li
               onClick={() => onPageChange(1)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") onPageChange(1);
+              }}
               className={`${styles.pagination__list_item} ${
                 1 === currentPage ? styles.pagination__list_item_active : ""
               }`}
+              tabIndex={0}
             >
               1
             </li>
@@ -112,11 +120,15 @@ export default function Pagination({
             )}
             <li
               onClick={() => onPageChange(adjustedPage)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") onPageChange(adjustedPage);
+              }}
               className={`${styles.pagination__list_item} ${
                 adjustedPage === currentPage
                   ? styles.pagination__list_item_active
                   : ""
               }`}
+              tabIndex={0}
             >
               {adjustedPage}
             </li>
@@ -129,11 +141,15 @@ export default function Pagination({
             )}
             <li
               onClick={() => onPageChange(numberOfPages)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") onPageChange(numberOfPages);
+              }}
               className={`${styles.pagination__list_item} ${
                 numberOfPages === currentPage
                   ? styles.pagination__list_item_active
                   : ""
               }`}
+              tabIndex={0}
             >
               {numberOfPages}
             </li>

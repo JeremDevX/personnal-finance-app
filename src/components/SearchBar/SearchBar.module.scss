@@ -5,17 +5,33 @@
   align-items: center;
   justify-content: space-between;
 
-  gap: var(--space-150);
+  flex: 1;
   width: 100%;
+  max-width: 20rem;
+  gap: var(--space-150);
   padding: var(--space-150) var(--space-250);
   border: 1px solid var(--beige-500);
   border-radius: 0.5rem;
 
+  &:focus-within {
+    outline: 2px solid var(--grey-500);
+    border-radius: 0.25rem;
+    outline-offset: 0px;
+  }
+
   &__input {
+    width: 67%;
     border: none;
+    text-overflow: ellipsis;
+
     &::placeholder {
       @include mix.text-preset-4;
       color: var(--grey-300);
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
     }
   }
 

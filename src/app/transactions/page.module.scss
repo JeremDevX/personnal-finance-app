@@ -1,6 +1,9 @@
 @use "../../styles/mixins" as mix;
 
 .transactions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-300);
   &__title {
     @include mix.text-preset-1;
 

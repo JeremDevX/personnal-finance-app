@@ -2,12 +2,13 @@
 
 import { Data } from "@/utils/interfaces";
 import styles from "./TransactionsList.module.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { formatCurrencyNumber } from "@/utils/functions";
 import Pagination from "@/components/pagination/Pagination";
 import SearchBar from "../../SearchBar/SearchBar";
-import { Icons } from "@/components/icons/Icons";
+import SortDropdown from "@/components/sortDropdown/SortDropdown";
+import SortByCategoryDropdown from "@/components/sortDropdown/SortByCategoryDropdown";
 
 interface TransactionElementProps {
   name: string;
@@ -57,34 +58,98 @@ export default function TransactionsList({
 }: {
   transactions: Data["transactions"];
 }) {
-  const [transactionsList, setTransactionsList] = useState(transactions);
+  const [query, setQuery] = useState<string>("");
+  const [currentSort, setCurrentSort] = useState<string>("latest");
+  const [currentCategory, setCurrentCategory] = useState<string>("All");
+  const [filteredTransactions, setFilteredTransactions] =
+    useState(transactions);
   const [page, setPage] = useState<number>(1);
   const itemsPerPage = 10;
 
-  const numberOfPages = Math.ceil(transactionsList.length / 10);
+  const numberOfPages = Math.ceil(filteredTransactions.length / itemsPerPage);
+
+  const applyFilters = () => {
+    let filtered = transactions;
+    if (currentCategory !== "All") {
+      filtered = filtered.filter(
+        (transaction) => transaction.category === currentCategory
+      );
+    }
+
+    if (query) {
+      filtered = filtered.filter((transaction) =>
+        transaction.name.toLowerCase().includes(query.toLowerCase())
+      );
+    }
+
+    filtered = filtered.sort((a, b) => {
+      if (currentSort === "latest") {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      } else if (currentSort === "oldest") {
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      } else if (currentSort === "aToZ") {
+        return a.name.localeCompare(b.name);
+      } else if (currentSort === "zToA") {
+        return b.name.localeCompare(a.name);
+      } else if (currentSort === "highest") {
+        return b.amount - a.amount;
+      } else if (currentSort === "lowest") {
+        return a.amount - b.amount;
+      }
+      return 0;
+    });
+
+    setFilteredTransactions(filtered);
+  };
+
+  useEffect(() => {
+    applyFilters();
+    setPage(1);
+  }, [query, currentSort, currentCategory]);
+
+  const handleSearchTransaction = (query: string) => {
+    setQuery(query);
+  };
+
+  const handleSortTransactions = (sort: string) => {
+    setCurrentSort(sort);
+  };
+
+  const handleCategoryChange = (category: string) => {
+    setCurrentCategory(category);
+  };
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
   };
 
-  const handleSearchTransaction = (query: string) => {
-    const filteredTransactions = transactions.filter((transaction) =>
-      transaction.name.toLowerCase().includes(query.toLowerCase())
-    );
-    setTransactionsList(filteredTransactions);
-  };
+  const transactionCategories = [
+    "All",
+    ...Array.from(
+      new Set(transactions.map((transaction) => transaction.category))
+    ),
+  ];
 
   return (
     <section className={styles.transactionsListContainer}>
       <div className={styles.transactionsListContainer__header}>
         <SearchBar onSearch={handleSearchTransaction} />
         <div className={styles.transactionsListContainer__header_filters}>
-          <Icons.SortMobile className={styles.icon} />
-          <Icons.FilterMobile className={styles.icon} />
+          <SortDropdown onSort={handleSortTransactions} />
+          <SortByCategoryDropdown
+            categories={transactionCategories}
+            onCategoryChange={handleCategoryChange}
+          />
         </div>
       </div>
+      <div className={styles.transactionsInfos}>
+        <span>Recipient / Sender</span>
+        <span>Category</span>
+        <span>Transaction Date</span>
+        <span>Amount</span>
+      </div>
       <ul className={styles.transactionsList}>
-        {transactionsList
+        {filteredTransactions
           .slice((page - 1) * itemsPerPage, page * itemsPerPage)
           .map((transaction, index) => (
             <TransactionElement

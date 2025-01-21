@@ -6,27 +6,15 @@ import { Icons } from "../icons/Icons";
 import { useEffect, useState } from "react";
 
 interface SortDropdownProps {
-  onSort: (sort: string) => void;
+  categories: string[];
+  onCategoryChange: (sort: string) => void;
 }
 
-const sortType = [
-  { value: "latest", label: "Latest", ariaLabel: "Sort by latest" },
-  { value: "oldest", label: "Oldest", ariaLabel: "Sort by oldest" },
-  { value: "aToZ", label: "A to Z", ariaLabel: "Sort by alphabetical order" },
-  {
-    value: "zToA",
-    label: "Z to A",
-    ariaLabel: "Sort by reverse alphabetical order",
-  },
-  { value: "highest", label: "Highest", ariaLabel: "Sort by highest amount" },
-  { value: "lowest", label: "Lowest", ariaLabel: "Sort by lowest amount" },
-];
-
-export default function SortDropdown(props: SortDropdownProps) {
-  const { onSort } = props;
+export default function SortByCategoryDropdown(props: SortDropdownProps) {
+  const { categories, onCategoryChange } = props;
   const windowWidth = useWindowDimensions().width;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedSort, setSelectedSort] = useState(sortType[0]);
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
   const handleOpenMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -35,10 +23,10 @@ export default function SortDropdown(props: SortDropdownProps) {
     }
   };
 
-  const handleChangeSelectedSort = (sort: (typeof sortType)[0]) => {
-    setSelectedSort(sort);
+  const handleChangeSelectedCategory = (category: string) => {
+    setSelectedCategory(category);
     setIsMenuOpen(false);
-    onSort(sort.value);
+    onCategoryChange(category);
   };
 
   useEffect(() => {
@@ -59,7 +47,7 @@ export default function SortDropdown(props: SortDropdownProps) {
   return (
     <div className={styles.sortDropdown}>
       {windowWidth < 768 ? (
-        <Icons.SortMobile
+        <Icons.FilterMobile
           className={styles.sortDropdown__mobile}
           onClick={handleOpenMenu}
           onKeyDown={(event) => {
@@ -68,12 +56,12 @@ export default function SortDropdown(props: SortDropdownProps) {
             }
           }}
           tabIndex={0}
-          aria-label="Open sorting menu"
+          aria-label="Open category menu"
           role="button"
         />
       ) : (
         <div className={styles.sortDropdown__desktop}>
-          <span>Sort by</span>
+          <span>Category</span>
           <div
             className={styles.sortDropdown__desktop_dropdown}
             onClick={handleOpenMenu}
@@ -83,39 +71,41 @@ export default function SortDropdown(props: SortDropdownProps) {
               }
             }}
             tabIndex={0}
-            aria-label="Open sorting menu"
+            aria-label="Open category menu"
             role="button"
           >
-            {selectedSort.label}
+            {selectedCategory === "All" ? "All Transactions" : selectedCategory}
             <Icons.CaretDown />
           </div>
         </div>
       )}
       {isMenuOpen && (
         <ul
-          className={styles.sortDropdown__menu}
+          className={`${styles.sortDropdown__menu} ${styles.sortDropdown__menu_categories}`}
           aria-label="Sorting options"
           aria-expanded={isMenuOpen}
           role="menu"
         >
-          {Object.values(sortType).map((sort) => (
+          {Object.values(categories).map((category, index) => (
             <li
-              key={sort.value}
+              id={`sort-item${index}`}
+              key={category}
               className={`${styles.sortDropdown__item} ${
-                sort.value === selectedSort.value
+                category === selectedCategory
                   ? styles.sortDropdown__item_selected
                   : ""
               }`}
-              onClick={() => handleChangeSelectedSort(sort)}
+              onClick={() => handleChangeSelectedCategory(category)}
               onKeyDown={(event) => {
-                if (event.key === "Enter") handleChangeSelectedSort(sort);
+                if (event.key === "Enter")
+                  handleChangeSelectedCategory(category);
               }}
-              aria-label={sort.ariaLabel}
-              aria-selected={sort.value === selectedSort.value}
+              aria-label={category}
+              aria-selected={category === selectedCategory}
               tabIndex={0}
               role="menuitem"
             >
-              {sort.label}
+              {category === "All" ? "All Transactions" : category}
             </li>
           ))}
         </ul>

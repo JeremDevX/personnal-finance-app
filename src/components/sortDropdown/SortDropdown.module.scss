@@ -1,0 +1,71 @@
+@use "@/styles/mixins" as mix;
+
+.sortDropdown {
+  position: relative;
+
+  &__mobile {
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+  }
+
+  &__desktop {
+    @include mix.text-preset-4;
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-100);
+    color: var(--grey-500);
+
+    &_dropdown {
+      display: flex;
+      align-items: center;
+
+      gap: var(--space-150);
+      padding: var(--space-150) var(--space-250);
+      border: 1px solid var(--beige-500);
+      border-radius: 0.5rem;
+      text-transform: capitalize;
+      color: var(--grey-900);
+    }
+  }
+
+  &__menu {
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+
+    gap: var(--space-150);
+    top: 0;
+    right: 0;
+    width: 7.125rem;
+    padding: var(--space-200) var(--space-150);
+    background-color: var(--white);
+    border-radius: 0.5rem;
+    box-shadow: (0px 4px 24px rgba(0, 0, 0, 0.25));
+
+    &_categories {
+      width: 11.0625rem;
+      max-height: 18.75rem;
+
+      overflow-y: scroll;
+    }
+  }
+
+  &__item {
+    @include mix.text-preset-4;
+
+    cursor: pointer;
+    color: var(--grey-900);
+
+    &:not(:last-child) {
+      padding-bottom: var(--space-150);
+      border-bottom: 1px solid var(--grey-100);
+    }
+
+    &_selected {
+      @include mix.text-preset-4-bold;
+    }
+  }
+}
