@@ -99,6 +99,7 @@ export default function Sidebar() {
         }`}
         aria-label={isMenuOpen ? "Minimize Menu" : "Expand Menu"}
         aria-expanded={isMenuOpen}
+        role="button"
         tabIndex={0}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         onKeyDown={(e) => {

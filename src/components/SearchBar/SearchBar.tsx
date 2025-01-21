@@ -37,10 +37,13 @@ export default function SearchBar(props: SearchBarProps) {
         placeholder="Search transaction"
         className={styles.searchBar__input}
         onChange={handleInputChange}
+        aria-label="Search for a transaction by name"
+        name="Search bar"
       />
       <Icons.Search
         className={styles.searchBar__icon}
         onClick={() => handleSubmitSearch(query)}
+        role="button"
       />
     </form>
   );

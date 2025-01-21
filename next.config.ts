@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  sassOptions: {
+    silenceDeprecations: ["mixed-decls", "legacy-js-api"],
+  },
 };
 
 export default nextConfig;
