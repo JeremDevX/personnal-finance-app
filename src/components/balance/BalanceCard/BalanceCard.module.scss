@@ -6,7 +6,7 @@
 
   gap: var(--space-250);
 
-  @media (min-width: 768px) {
+  @media (min-width: 1440px) {
     flex-direction: row;
 
     gap: var(--space-300);
@@ -22,7 +22,7 @@
     background-color: var(--white);
     padding: var(--space-250);
 
-    @media (min-width: 768px) {
+    @media (min-width: 1440px) {
       padding: var(--space-300);
     }
 

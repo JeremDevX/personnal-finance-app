@@ -131,6 +131,17 @@
         height: 0.25rem;
         background-color: var(--green);
       }
+
+      &:hover {
+        .nav__linkEl_name {
+          color: var(--grey-900) !important;
+        }
+        .icon {
+          path {
+            fill: var(--green) !important;
+          }
+        }
+      }
       .icon {
         path {
           fill: var(--green);
@@ -187,17 +198,6 @@
         .icon {
           path {
             fill: var(--white);
-          }
-        }
-      }
-
-      &:focus-visible {
-        .nav__linkEl_name {
-          color: var(--red);
-        }
-        .icon {
-          path {
-            fill: var(--red);
           }
         }
       }
@@ -272,13 +272,6 @@
       color: var(--white);
       path {
         fill: var(--white);
-      }
-    }
-
-    &:focus-visible {
-      color: var(--red);
-      path {
-        fill: var(--red);
       }
     }
   }
