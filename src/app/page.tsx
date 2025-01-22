@@ -4,7 +4,10 @@ import { Data } from "@/utils/interfaces";
 import { promises as fs } from "fs";
 import PotsCard from "@/components/pots/PotsCard/PotsCard";
 import TransactionsCard from "@/components/transactions/TransactionsCard/TransactionsCard";
-import BudgetsCard from "@/components/budgets/BudgetsCard/BudgetsCard";
+import BudgetsCard, {
+  BudgetsCardChart,
+  BudgetsCardOverviewCategories,
+} from "@/components/budgets/BudgetsCard/BudgetsCard";
 import RecurringBillsCard from "@/components/recurringBills/RecurringBillsCard/RecurringBillsCard";
 
 export default async function OverviewPage() {
@@ -24,7 +27,11 @@ export default async function OverviewPage() {
           <BudgetsCard
             budgets={data.budgets}
             transactions={data.transactions}
-          />
+            isOnOverviewPage
+          >
+            <BudgetsCardChart />
+            <BudgetsCardOverviewCategories />
+          </BudgetsCard>
           <RecurringBillsCard transactions={data.transactions} />
         </div>
       </div>

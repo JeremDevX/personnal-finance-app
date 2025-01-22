@@ -69,7 +69,7 @@ export default function TransactionsList({
   const numberOfPages = Math.ceil(filteredTransactions.length / itemsPerPage);
 
   const applyFilters = () => {
-    let filtered = transactions;
+    let filtered = [...transactions];
     if (currentCategory !== "All") {
       filtered = filtered.filter(
         (transaction) => transaction.category === currentCategory
