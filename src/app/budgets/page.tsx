@@ -5,6 +5,7 @@ import BudgetsCard, {
   BudgetsCardChart,
   BudgetCategorySpentAndLimit,
 } from "@/components/budgets/BudgetsCard/BudgetsCard";
+import BudgetDetails from "@/components/budgets/BudgetDetails/BudgetDetails";
 
 export default async function BudgetsPage() {
   const file = await fs.readFile(process.cwd() + "/src/app/data.json", "utf8");
@@ -23,7 +24,12 @@ export default async function BudgetsPage() {
             <BudgetCategorySpentAndLimit />
           </BudgetsCard>
         </div>
-        <div className={styles.budgets__list}></div>
+        <div className={styles.budgets__list}>
+          <BudgetDetails
+            budgets={data.budgets}
+            transactions={data.transactions}
+          />
+        </div>
       </section>
     </main>
   );

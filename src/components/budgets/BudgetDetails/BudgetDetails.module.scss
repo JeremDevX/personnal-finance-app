@@ -1,0 +1,177 @@
+@use "@/styles/mixins" as mix;
+
+.budgetDetails {
+  @include mix.element-padding;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-250);
+
+  &__header {
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-200);
+
+    &_dot {
+      width: 1rem;
+      height: 1rem;
+
+      background-color: var(--category-color, var(--green));
+      border-radius: 50%;
+    }
+
+    &_title {
+      @include mix.text-preset-2;
+
+      color: var(--grey-900);
+      margin-right: auto;
+    }
+  }
+}
+
+.barContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-200);
+
+  &__max {
+    @include mix.text-preset-4;
+
+    color: var(--grey-500);
+  }
+
+  &__bar {
+    position: relative;
+
+    width: 100%;
+    height: 2rem;
+    background-color: var(--beige-100);
+    border-radius: 0.25rem;
+  }
+
+  &__progress {
+    position: absolute;
+    top: 0.25rem;
+    left: 0.25rem;
+    right: 0.25rem;
+    bottom: 0.25rem;
+
+    background-color: var(--category-color, var(--green));
+    border-radius: 0.25rem;
+  }
+
+  &__spentAndRemain {
+    display: flex;
+
+    gap: var(--space-200);
+  }
+
+  &__infoContainer {
+    display: flex;
+
+    flex: 1;
+    gap: var(--space-200);
+  }
+
+  &__label {
+    height: 100%;
+    width: 0.25rem;
+    border-radius: 0.5rem;
+    background-color: var(--category-color, var(--beige-100));
+  }
+
+  &__infoContent {
+    @include mix.text-preset-4;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-100);
+    color: var(--grey-500);
+  }
+
+  &__infoValue {
+    @include mix.text-preset-4-bold;
+
+    color: var(--grey-900);
+  }
+}
+
+.latestSpending {
+  @include mix.element-padding;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-250);
+  background-color: var(--beige-100) !important;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__title {
+    @include mix.text-preset-3;
+
+    color: var(--grey-900);
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-150);
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--grey-300);
+      padding-bottom: var(--space-200);
+    }
+  }
+
+  &__details {
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-200);
+  }
+
+  &__avatar {
+    display: none;
+    border-radius: 50%;
+
+    @media (min-width: 768px) {
+      display: block;
+    }
+  }
+
+  &__name {
+    @include mix.text-preset-5-bold;
+    color: var(--grey-900);
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--space-50);
+    text-align: right;
+  }
+
+  &__amount {
+    @include mix.text-preset-5-bold;
+    color: var(--grey-900);
+  }
+
+  &__date {
+    @include mix.text-preset-5;
+    color: var(--grey-500);
+  }
+}

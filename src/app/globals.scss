@@ -75,7 +75,9 @@ body {
 
 main {
   @include mix.main-padding;
-  margin-bottom: 52px;
+
+  max-width: 1920px;
+  margin: 0 auto 52px;
 
   @media (min-width: 768px) {
     margin-bottom: 74px;
