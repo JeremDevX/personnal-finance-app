@@ -2,9 +2,9 @@ import { Data } from "@/utils/interfaces";
 import styles from "./BudgetDetails.module.scss";
 import { formatCurrencyNumber } from "@/utils/functions";
 import { CSSProperties } from "react";
-import { Icons } from "@/components/icons/Icons";
 import LinkToPage from "@/components/linkToPage/LinkToPage";
 import Image from "next/image";
+import DropdownEditDelete from "@/components/DropdownEditDelete/DropdownEditDelete";
 
 interface BudgetAmountBarProps {
   maximumAmount: number;
@@ -48,6 +48,10 @@ export default function BudgetDetailsContainer({
       .slice(-3);
   }
 
+  function getUsedColors() {
+    return budgets.map((budget) => budget.theme);
+  }
+
   return (
     <>
       {budgetCategories.map((category) => (
@@ -60,7 +64,15 @@ export default function BudgetDetailsContainer({
               }
             ></span>
             <h2 className={styles.budgetDetails__header_title}>{category}</h2>
-            <Icons.Ellipsis />
+            <DropdownEditDelete
+              type="budgets"
+              data={{
+                category: category,
+                maximum: maximumAmount(category),
+                theme: categoryColor(category),
+              }}
+              allreadyUsedColors={getUsedColors()}
+            />
           </div>
           <div className={styles.budgetDetails__bar}>
             <BudgetAmountBar

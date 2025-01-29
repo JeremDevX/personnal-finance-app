@@ -1,0 +1,38 @@
+@use "@/styles/mixins" as mix;
+
+.ellipsis {
+  cursor: pointer;
+  position: relative;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+
+  gap: var(--space-150);
+  right: 0;
+  top: 1.5rem;
+  padding: var(--space-150) var(--space-250);
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(#000000, 0.25);
+  z-index: 100;
+
+  &__button {
+    @include mix.text-preset-4;
+    color: var(--red);
+
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      padding-bottom: var(--space-150);
+      border-bottom: 1px solid var(--grey-100);
+      color: var(--grey-900);
+    }
+  }
+}

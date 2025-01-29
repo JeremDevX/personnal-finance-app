@@ -1,0 +1,183 @@
+@use "@/styles/mixins" as mix;
+
+.modalOverlay {
+  @include mix.main-padding;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal {
+  @include mix.element-padding;
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-250);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    @include mix.text-preset-2;
+  }
+
+  &__icon {
+    cursor: pointer;
+  }
+
+  &__description {
+    @include mix.text-preset-4;
+    color: var(--grey-500);
+  }
+}
+
+.editForm {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-200);
+}
+
+.editLabel {
+  @include mix.text-preset-5-bold;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-50);
+  color: var(--grey-500);
+}
+
+.editAction {
+  width: 100%;
+
+  &__button {
+    @include mix.text-preset-4-bold;
+
+    width: 100%;
+    padding: var(--space-200) 0;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--grey-900);
+    color: var(--white);
+
+    &:hover {
+      background-color: var(--grey-500);
+    }
+  }
+}
+
+.deleteActions {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-250);
+  width: 100%;
+
+  &__confirm {
+    @include mix.text-preset-4-bold;
+
+    width: 100%;
+    padding: var(--space-200) 0;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--red);
+    color: var(--white);
+  }
+
+  &__cancel {
+    @include mix.text-preset-4;
+
+    border: none;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    color: var(--grey-500);
+  }
+}
+
+.colorDropdown {
+  @include mix.text-preset-4;
+  width: 100%;
+
+  position: relative;
+
+  &__dot {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: var(--dot-color, var(--green));
+  }
+
+  &__button {
+    @include mix.text-preset-4;
+
+    display: flex;
+    align-items: center;
+
+    gap: var(--space-100);
+    width: 100%;
+    padding: var(--space-200) var(--space-150);
+    text-align: left;
+    cursor: pointer;
+    border: 1px solid var(--grey-500);
+    border-radius: 0.5rem;
+    background-color: var(--white);
+  }
+
+  &__icon {
+    margin-left: auto;
+  }
+
+  &__list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: 0;
+    padding: 0 var(--space-200);
+    background-color: var(--white);
+    border: 1px solid var(--grey-500);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+    z-index: 100;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    gap: var(--space-100);
+    padding: var(--space-150) 0;
+    cursor: pointer;
+    color: var(--grey-900);
+
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--grey-100);
+    }
+  }
+
+  &__usedColor {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+    position: absolute;
+    inset: 0;
+    color: var(--grey-500);
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+}
